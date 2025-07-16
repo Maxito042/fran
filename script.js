@@ -81,7 +81,7 @@ for (const [semestre, ramos] of Object.entries(malla)) {
   ramos.forEach(ramo => {
     const div = document.createElement("div");
     div.className = "ramo";
-    div.innerText = ramo;
+    div.innerHTML = `<span class="nombre">${ramo}</span>`;
     div.onclick = () => {
   div.classList.toggle("completed");
 };
