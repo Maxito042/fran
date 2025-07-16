@@ -1,76 +1,76 @@
 const malla = {
   "Semestre 1": [
-    "FUNDAMENTOS DE BIOLOGÍA Y GENÉTICA HUMANA",
-    "BASES QUÍMICAS Y BIOQUÍMICAS DE LA VIDA",
-    "SOCIEDAD Y PROFESIÓN",
-    "MATEMÁTICA BÁSICA",
+    "Fundamentos de Biología y Genética Humana",
+    "Bases Químicas y Bioquímicas de la Vida",
+    "Sociedad y Profesión",
+    "Matemática Básica",
     "Inglés I",
     "Habilidades Académicas I"
   ],
   "Semestre 2": [
-    "MORFOLOGÍA MICRO Y MACROSCÓPICA",
-    "MICROBIOLOGÍA Y AGENTES INFECCIOSOS",
-    "EPIDEMIOLOGÍA Y SALUD PÚBLICA",
-    "MATEMÁTICA PARA LAS MENCIONES",
+    "Morfología Micro y Macroscópica",
+    "Microbiología y Agentes Infecciosos",
+    "Epidemiología y Salud Pública",
+    "Matemática para las Menciones",
     "Inglés II",
     "Habilidades Académicas II"
   ],
   "Semestre 3": [
-    "FISIOLOGÍA Y FISIOPATOLOGÍA DE SISTEMAS I",
-    "QUÍMICA ORGÁNICA PARA LA SALUD",
-    "ANATOMÍA POR IMÁGENES",
-    "FÍSICA BÁSICA",
-    "BIOÉTICA",
+    "Fisiología y Fisiopatología de Sistemas I",
+    "Química Orgánica para la Salud",
+    "Anatomía por Imágenes",
+    "Física Básica",
+    "Bioética",
     "Inglés III",
     "Ética y Ciudadanía"
   ],
   "Semestre 4": [
-    "FISIOLOGÍA Y FISIOPATOLOGÍA DE SISTEMAS II",
-    "FARMACOLOGÍA CLÍNICA FUNDAMENTAL",
-    "FÍSICA PARA IMAGENOLOGÍA I",
-    "ELECTIVO DE FORMACIÓN GENERAL I",
+    "Fisiología y Fisiopatología de Sistemas II",
+    "Farmacología Clínica Fundamental",
+    "Física para Imagenología I",
+    "Electivo de Formación General I",
     "Inglés IV",
     "Responsabilidad Social Universitaria",
-    "PRÁCTICA INTEGRADA I EN TECNOLOGÍA MÉDICA IMAGENOLOGÍA Y FÍSICA"
+    "Práctica Integrada I en Tecnología Médica Imagenología y Física"
   ],
   "Semestre 5": [
-    "FÍSICA PARA IMAGENOLOGÍA II",
-    "ANATOMÍA PATOLÓGICA IMAGENOLÓGICA I",
-    "PSICOLOGÍA APLICADA A LA ATENCIÓN EN SALUD",
-    "RADIODIAGNÓSTICO I",
-    "PROTECCIÓN RADIOLÓGICA Y DOSIMETRÍA",
-    "PRÁCTICA INTEGRADA II EN TECNOLOGÍA MÉDICA IMAGENOLOGÍA Y FÍSICA"
+    "Física para Imagenología II",
+    "Anatomía Patológica Imagenológica I",
+    "Psicología Aplicada a la Atención en Salud",
+    "Radiodiagnóstico I",
+    "Protección Radiológica y Dosimetría",
+    "Práctica Integrada II en Tecnología Médica Imagenología y Física"
   ],
   "Semestre 6": [
-    "MANEJO DE IMÁGENES MÉDICAS",
-    "ANATOMÍA PATOLÓGICA IMAGENOLÓGICA II",
-    "RADIODIAGNÓSTICO II",
-    "FÍSICA NUCLEAR",
-    "ULTRASONIDO I",
-    "BIOSEGURIDAD",
-    "PRÁCTICA INTEGRADA III EN TECNOLOGÍA MÉDICA IMAGENOLOGÍA Y FÍSICA"
+    "Manejo de Imágenes Médicas",
+    "Anatomía Patológica Imagenológica II",
+    "Radiodiagnóstico II",
+    "Física Nuclear",
+    "Ultrasonido I",
+    "Bioseguridad",
+    "Práctica Integrada III en Tecnología Médica Imagenología y Física"
   ],
   "Semestre 7": [
-    "ENFERMERÍA APLICADA A LA TECNOLOGÍA MÉDICA",
-    "MEDICINA NUCLEAR",
-    "PROYECTO DE GRADO I",
-    "IMAGENOLOGÍA EN TOMOGRAFÍA COMPUTADA",
-    "ULTRASONIDO II",
-    "PRÁCTICA INTEGRADA IV EN TECNOLOGÍA MÉDICA IMAGENOLOGÍA Y FÍSICA"
+    "Enfermería Aplicada a la Tecnología Médica",
+    "Medicina Nuclear",
+    "Proyecto de Grado I",
+    "Imagenología en Tomografía Computada",
+    "Ultrasonido II",
+    "Práctica Integrada IV en Tecnología Médica Imagenología y Física"
   ],
   "Semestre 8": [
-    "RADIOLOGÍA INTERVENCIONAL",
-    "INFORMÁTICA MÉDICA",
-    "PROYECTO DE GRADO II",
-    "IMAGENOLOGÍA EN RESONANCIA MAGNÉTICA",
-    "RADIOTERAPÍA",
-    "PRÁCTICA INTEGRADA V EN TECNOLOGÍA MÉDICA IMAGENOLOGÍA Y FÍSICA"
+    "Radiología Intervencional",
+    "Informática Médica",
+    "Proyecto de Grado II",
+    "Imagenología en Resonancia Magnética",
+    "Radioterapia",
+    "Práctica Integrada V en Tecnología Médica Imagenología y Física"
   ]
 };
-
 const container = document.getElementById("malla-container");
-const completados = JSON.parse(localStorage.getItem("ramosCompletados")) || {};
 
+// Cargar ramos completados desde localStorage
+const completados = JSON.parse(localStorage.getItem("ramosCompletados")) || {};
 
 for (const [semestre, ramos] of Object.entries(malla)) {
   const box = document.createElement("div");
@@ -84,19 +84,32 @@ for (const [semestre, ramos] of Object.entries(malla)) {
     const div = document.createElement("div");
     div.className = "ramo";
     div.innerHTML = `<span class="nombre">${ramo}</span>`;
-   div.onclick = () => {
-  div.classList.toggle("completed");
-  const nombre = div.querySelector(".nombre");
-  if (div.classList.contains("completed")) {
-    nombre.innerText = "✅ " + ramo;
-  } else {
-    nombre.innerText = ramo;
-  }
-};
 
+    // Marcar como completado si ya estaba guardado
+    if (completados[ramo]) {
+      div.classList.add("completed");
+      div.querySelector(".nombre").innerText = `✅ ${ramo}`;
+    }
+
+    div.onclick = () => {
+      const isCompleted = div.classList.toggle("completed");
+      const nombre = div.querySelector(".nombre");
+
+      if (isCompleted) {
+        nombre.innerText = `✅ ${ramo}`;
+        completados[ramo] = true;
+      } else {
+        nombre.innerText = ramo;
+        delete completados[ramo];
+      }
+
+      // Guardar cambios
+      localStorage.setItem("ramosCompletados", JSON.stringify(completados));
+    };
 
     box.appendChild(div);
   });
 
   container.appendChild(box);
 }
+✅ ¿Qué logras con esto?
