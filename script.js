@@ -82,7 +82,10 @@ for (const [semestre, ramos] of Object.entries(malla)) {
     const div = document.createElement("div");
     div.className = "ramo";
     div.innerText = ramo;
-    div.onclick = () => alert(`Ramo: ${ramo}`);
+    div.onclick = () => {
+  div.classList.toggle("completed");
+};
+
     box.appendChild(div);
   });
 
