@@ -82,9 +82,16 @@ for (const [semestre, ramos] of Object.entries(malla)) {
     const div = document.createElement("div");
     div.className = "ramo";
     div.innerHTML = `<span class="nombre">${ramo}</span>`;
-    div.onclick = () => {
+   div.onclick = () => {
   div.classList.toggle("completed");
+  const nombre = div.querySelector(".nombre");
+  if (div.classList.contains("completed")) {
+    nombre.innerText = "✅ " + ramo;
+  } else {
+    nombre.innerText = ramo;
+  }
 };
+
 
     box.appendChild(div);
   });
