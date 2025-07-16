@@ -1,0 +1,19 @@
+#malla-container {
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  gap: 10px;
+  margin: 20px;
+}
+
+.curso {
+  background-color: #d0ebff;
+  border: 1px solid #74c0fc;
+  padding: 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.curso:hover {
+  background-color: #a5d8ff;
+}
