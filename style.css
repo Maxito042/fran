@@ -1,19 +1,45 @@
-#malla-container {
-  display: grid;
-  grid-template-columns: repeat(10, 1fr);
-  gap: 10px;
+body {
+  font-family: Arial, sans-serif;
   margin: 20px;
+  background-color: #f4f4f4;
 }
 
-.curso {
-  background-color: #d0ebff;
-  border: 1px solid #74c0fc;
-  padding: 10px;
+h1 {
+  text-align: center;
+  color: #2c3e50;
+}
+
+#malla-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+
+.semestre {
+  background-color: #ffffff;
+  border: 1px solid #ccc;
+  padding: 15px;
+  width: 300px;
   border-radius: 8px;
-  cursor: pointer;
-  transition: 0.3s;
+  box-shadow: 2px 2px 10px rgba(0,0,0,0.1);
 }
 
-.curso:hover {
-  background-color: #a5d8ff;
+.semestre h2 {
+  font-size: 18px;
+  margin-bottom: 10px;
+  color: #2980b9;
+}
+
+.ramo {
+  background-color: #d6eaf8;
+  margin: 5px 0;
+  padding: 8px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.ramo:hover {
+  background-color: #aed6f1;
 }
