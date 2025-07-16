@@ -69,6 +69,8 @@ const malla = {
 };
 
 const container = document.getElementById("malla-container");
+const completados = JSON.parse(localStorage.getItem("ramosCompletados")) || {};
+
 
 for (const [semestre, ramos] of Object.entries(malla)) {
   const box = document.createElement("div");
