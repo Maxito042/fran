@@ -43,3 +43,8 @@ h1 {
 .ramo:hover {
   background-color: #aed6f1;
 }
+.ramo.completed {
+  text-decoration: line-through;
+  background-color: #d5f5e3;
+  color: #2e7d32;
+}
