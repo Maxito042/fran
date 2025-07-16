@@ -112,4 +112,3 @@ for (const [semestre, ramos] of Object.entries(malla)) {
 
   container.appendChild(box);
 }
-✅ ¿Qué logras con esto?
