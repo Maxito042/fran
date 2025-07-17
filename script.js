@@ -69,7 +69,7 @@ const malla = {
 };
 const container = document.getElementById("malla-container");
 
-// Cargar ramos completados desde localStorage
+
 const completados = JSON.parse(localStorage.getItem("ramosCompletados")) || {};
 
 for (const [semestre, ramos] of Object.entries(malla)) {
@@ -85,7 +85,7 @@ for (const [semestre, ramos] of Object.entries(malla)) {
     div.className = "ramo";
     div.innerHTML = `<span class="nombre">${ramo}</span>`;
 
-    // Marcar como completado si ya estaba guardado
+  
     if (completados[ramo]) {
       div.classList.add("completed");
       div.querySelector(".nombre").innerText = `✅ ${ramo}`;
@@ -103,7 +103,7 @@ for (const [semestre, ramos] of Object.entries(malla)) {
         delete completados[ramo];
       }
 
-      // Guardar cambios
+  
       localStorage.setItem("ramosCompletados", JSON.stringify(completados));
     };
 
